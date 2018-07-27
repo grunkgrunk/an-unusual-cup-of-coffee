@@ -1,12 +1,16 @@
 extends KinematicBody2D
 
-var movespeed = 30
+var movespeed = 100
 var coffee = 100 
 var vel = Vector2()
 enum hand_states {HOVERING, POINTING, TOUCHING, GRABBING}
 var hand_state = HOVERING
 var in_area = null
 var is_holding = false
+
+var blocked = false
+
+const half_screen = 128 * 6 / 2
 
 export (NodePath) var camera_path
 onready var camera = get_node(camera_path)
@@ -23,26 +27,48 @@ const state_to_frame = {
 	GRABBING: GRAB
 }
 
+func _draw():
+	#var pos = position + $bottom.position
+	var pos = $bottom.position - Vector2(30, 0)
+	var size = Vector2(60, 800)
+	var rect = Rect2(pos, size)
+	var color = Color(0, 0.52, 0.32)
+	draw_rect(rect, color)
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	pass
+	$sprite.frame = state_to_frame[hand_state]
 
 func _process(delta):
-	var movement = move()
+	update()
+	var movement = move() * delta
 	
 	var state = current_state()
 	switch_state(state)
-
+	
 	match hand_state:
 		HOVERING:
-			vel = move_and_slide(movement)
+			position += movement
+			var diff = position - camera.position
+			position.x = camera.position.x + clamp(diff.x, -half_screen, half_screen)
+			position.y = camera.position.y + clamp(diff.y, -half_screen, half_screen)
 		GRABBING:
-			vel = move_and_slide(movement)
+			position += movement
+			var diff = position - camera.position
+			position.x = camera.position.x + clamp(diff.x, -half_screen, half_screen)
+			position.y = camera.position.y + clamp(diff.y, -half_screen, half_screen)
+			
 			if is_holding:
-				in_area.position = position - in_area.get_node("offset").position
+				if in_area.has_method("interact"):
+					in_area.interact(self)
+				else:
+					in_area.position = position - in_area.get_node("offset").position
 		TOUCHING:
-			camera.position -= movement * delta
+			camera.position -= movement
+			var diff = position - camera.position
+			camera.position.x = position.x - clamp(diff.x, -half_screen, half_screen)
+			camera.position.y = position.y - clamp(diff.y, -half_screen, half_screen)
 
 func current_state():
 	if Input.is_action_pressed("grab"):
@@ -69,12 +95,6 @@ func switch_state(state):
 			is_holding = in_area != null
 	
 	hand_state = state
-			
-		
-
-		
-		
-
 
 func move():
 	var dir = Vector2()
@@ -88,15 +108,31 @@ func move():
 		dir.y = 1
 		
 	vel += dir.normalized() * movespeed
-	vel *= 0.9
+	
+	vel *= 0.85
 	return vel
 		
 
 func _on_grab_area_entered(area):
-	if area.is_in_group("grab") and not is_holding:
+	if area.is_in_group("blocking"):
+		blocked = true
+	
+	var is_door = area.is_in_group("door")
+	
+	if area.is_in_group("grab") and not is_holding and (not blocked or is_door):
 		in_area = area
 
 func _on_grab_area_exited(area):
+	if area.is_in_group("blocking"):
+		blocked = false
 	if area == in_area:
 		in_area = null
 		is_holding = false
+
+
+func _on_surface_area_entered(area):
+	pass
+
+
+func _on_surface_area_exited(area):
+	pass # replace with function body

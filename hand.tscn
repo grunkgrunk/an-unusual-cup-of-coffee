@@ -1,17 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://coffee_sprites-export.png" type="Texture" id=2]
 
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 16.0161
+
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 27.3284
+radius = 30.2637
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-radius = 30.2637
+extents = Vector2( 30.2309, 43.2906 )
 
 [node name="hand" type="KinematicBody2D"]
 
@@ -30,13 +35,12 @@ camera_path = NodePath("../camera")
 texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
-frame = 2
+frame = 5
 region_rect = Rect2( 33.375, 0, 14, 16.75 )
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="grab" type="Area2D" parent="." index="1"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -47,17 +51,40 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="grab" index="0"]
 
-position = Vector2( 10.485, -14.679 )
-shape = SubResource( 2 )
+position = Vector2( -11.5536, -8.78135 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 visible = false
 position = Vector2( 4.19402, 7.12982 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+
+[node name="surface" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="surface" index="0"]
+
+position = Vector2( 4.83691, 6.77169 )
+shape = SubResource( 3 )
+
+[node name="bottom" type="Position2D" parent="." index="4"]
+
+position = Vector2( 4.82726, 46.416 )
 
 [connection signal="area_entered" from="grab" to="." method="_on_grab_area_entered"]
 
 [connection signal="area_exited" from="grab" to="." method="_on_grab_area_exited"]
+
+[connection signal="area_entered" from="surface" to="." method="_on_surface_area_entered"]
+
+[connection signal="area_exited" from="surface" to="." method="_on_surface_area_exited"]
 
 
