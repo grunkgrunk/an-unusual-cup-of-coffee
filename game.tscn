@@ -49,13 +49,14 @@ position = Vector2( 400, 120 )
 
 [node name="hand" type="KinematicBody2D" parent="." index="2"]
 
-editor/display_folded = true
 position = Vector2( 140, 75 )
+z_index = 100
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 2 )
+_sections_unfolded = [ "Z Index" ]
 camera_path = NodePath("../camera")
 
 [node name="sprite" type="Sprite" parent="hand" index="0"]

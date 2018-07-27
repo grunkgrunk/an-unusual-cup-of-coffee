@@ -16,6 +16,13 @@ const TOUCH = 3
 const GRAB = 5
 const POINT = 4
 
+const state_to_frame = {
+	HOVERING: HOVER,
+	TOUCHING: TOUCH,
+	POINTING: POINT,
+	GRABBING: GRAB
+}
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -24,33 +31,33 @@ func _ready():
 func _process(delta):
 	var movement = move()
 	
-	print(Input.action_press())
-	
-	if Input.is_action_pressed("grab"):
-		$sprite.frame = GRAB
-		switch_state(GRABBING)
-	elif Input.is_action_pressed("touch"):
-		$sprite.frame = TOUCH
-		switch_state(TOUCHING)
-	else:
-		$sprite.frame = HOVER
-		switch_state(GRABBING)
+	var state = current_state()
+	switch_state(state)
 
 	match hand_state:
-		HOVER:
+		HOVERING:
 			vel = move_and_slide(movement)
-		GRAB:
+		GRABBING:
 			vel = move_and_slide(movement)
 			if is_holding:
 				in_area.position = position - in_area.get_node("offset").position
-		TOUCH:
+		TOUCHING:
 			camera.position -= movement * delta
+
+func current_state():
+	if Input.is_action_pressed("grab"):
+		return GRABBING
+	elif Input.is_action_pressed("touch"):
+		return TOUCHING
+	
+	return HOVERING
 
 func switch_state(state):
 	var prev_hand_state = hand_state
 	if (prev_hand_state == state):
 		return
 	
+	$sprite.frame = state_to_frame[state]
 	match state:
 		HOVERING:
 			vel = Vector2()
@@ -58,8 +65,10 @@ func switch_state(state):
 		TOUCHING:
 			vel = Vector2()
 			is_holding = false
-		GRAB:
+		GRABBING:
 			is_holding = in_area != null
+	
+	hand_state = state
 			
 		
 
