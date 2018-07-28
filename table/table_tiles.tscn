@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://table/open_door.png" type="Texture" id=1]
 [ext_resource path="res://table/door.png" type="Texture" id=2]
 [ext_resource path="res://table/wood.png" type="Texture" id=3]
 [ext_resource path="res://table/table.png" type="Texture" id=4]
+[ext_resource path="res://coffee_sprites-export.png" type="Texture" id=5]
 
 [node name="table_tiles" type="Node2D"]
 
@@ -26,5 +27,15 @@ texture = ExtResource( 3 )
 
 position = Vector2( 192, 384 )
 texture = ExtResource( 4 )
+
+[node name="window" type="Sprite" parent="." index="4"]
+
+position = Vector2( 384, 384 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+vframes = 8
+hframes = 8
+frame = 49
+_sections_unfolded = [ "Animation", "Region", "Transform" ]
 
 

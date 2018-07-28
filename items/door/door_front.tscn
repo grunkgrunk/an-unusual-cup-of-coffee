@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://items/door.gd" type="Script" id=1]
-[ext_resource path="res://items/door.png" type="Texture" id=2]
+[ext_resource path="res://items/door/door.gd" type="Script" id=1]
+[ext_resource path="res://items/door/door.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -13,7 +13,7 @@ radius = 23.6859
 custom_solver_bias = 0.0
 extents = Vector2( 70.6887, 68.8271 )
 
-[node name="door" type="Area2D" index="0" groups=[
+[node name="door_front" type="Area2D" groups=[
 "door",
 "interactable",
 "grab",

@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://items/coffee/coffee.gd" type="Script" id=1]
+[ext_resource path="res://coffee_sprites-export.png" type="Texture" id=2]
+[ext_resource path="res://items/physics.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 31.6228
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="coffee" type="Area2D" groups=[
+"grab",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="shape" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( -3, 15 )
+shape = SubResource( 1 )
+
+[node name="offset" type="Position2D" parent="." index="1"]
+
+position = Vector2( 30, 10 )
+
+[node name="content" type="Sprite" parent="." index="2"]
+
+position = Vector2( 24, 24 )
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 36
+_sections_unfolded = [ "Animation" ]
+
+[node name="sprite" type="Sprite" parent="." index="3"]
+
+texture = ExtResource( 2 )
+flip_h = true
+vframes = 8
+hframes = 8
+frame = 25
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
+
+[node name="bottom" type="Area2D" parent="." index="4"]
+
+position = Vector2( 0, 40 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom" index="0"]
+
+shape = SubResource( 2 )
+
+
