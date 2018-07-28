@@ -239,6 +239,14 @@ editor_draw_drag_margin = false
 script = ExtResource( 11 )
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
+[node name="topleft" type="Position2D" parent="camera" index="0"]
+
+position = Vector2( -863.163, -2009.36 )
+
+[node name="bottomright" type="Position2D" parent="camera" index="1"]
+
+position = Vector2( 1241.45, 186.217 )
+
 [node name="hand" parent="." index="6" instance=ExtResource( 12 )]
 
 position = Vector2( 672, 1632 )
