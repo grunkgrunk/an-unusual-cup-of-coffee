@@ -5,6 +5,20 @@ signal begin_grab
 signal end_grab
 # validate the coffee here
 # also have different messages here
+const welcome = "hi, i would like a cup of steaming hot milk with three added coffee beans. I would like the milk to come straight from the cow please."
+const win = "perfect! exactly what i asked for. have a nice day!"
+const empty = "ehhhhhh... are you seriously serving me an empty cup sir??"
+func _ready():
+	$layer/speech/label.text = welcome
+
+func validate(coffee):
+	match coffee.contents:
+		{ "milk": true, "coffee": true }:
+			$label.text = win
+		{ "milk": false, "coffee": false }:
+			$label.text = empty
+		{ "milk": false, "coffee": true }:
+			pass
 
 func _on_hand_area_entered(area):
 	if area.is_in_group("grab"):

@@ -5,7 +5,6 @@ var start_pos = Vector2()
 
 func _ready():
 	start_pos = global_position
-	show()
 	
 func interact(hand):
 	var pos = hand.position - $offset.position

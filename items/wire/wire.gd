@@ -37,6 +37,7 @@ func _on_end_grab(hand, obj):
 
 func _on_wire_area_entered(area):
 	if area.is_in_group("butt"):
+		area.get_node("farts").emitting = false
 		global_position = area.global_position
 		connected = true
 		monitoring = false
