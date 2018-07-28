@@ -18,7 +18,9 @@ radius = 30.2637
 custom_solver_bias = 0.0
 extents = Vector2( 30.2309, 43.2906 )
 
-[node name="hand" type="KinematicBody2D"]
+[node name="hand" type="KinematicBody2D" groups=[
+"hand",
+]]
 
 position = Vector2( 140, 75 )
 z_index = 100

@@ -20,6 +20,15 @@ const TOUCH = 3
 const GRAB = 5
 const POINT = 4
 
+signal begin_hover
+signal end_hover
+
+signal begin_grab
+signal end_grab
+
+signal begin_touch
+signal end_touch
+
 const state_to_frame = {
 	HOVERING: HOVER,
 	TOUCHING: TOUCH,
@@ -82,19 +91,29 @@ func switch_state(state):
 	var prev_hand_state = hand_state
 	if (prev_hand_state == state):
 		return
-	
-	$sprite.frame = state_to_frame[state]
-	match state:
+		
+	# ending this state
+	match prev_hand_state:
 		HOVERING:
+			emit_signal("end_hover")
+		TOUCHING:
+			emit_signal("end_touch")
+		GRABBING:
+			emit_signal("end_grab")
+	hand_state = state
+	$sprite.frame = state_to_frame[hand_state]
+	match hand_state:
+		HOVERING:
+			emit_signal("begin_hover")
 			vel = Vector2()
 			is_holding = false
 		TOUCHING:
+			emit_signal("begin_touch")
 			vel = Vector2()
 			is_holding = false
 		GRABBING:
+			emit_signal("begin_grab")
 			is_holding = in_area != null
-	
-	hand_state = state
 
 func move():
 	var dir = Vector2()
@@ -111,7 +130,6 @@ func move():
 	
 	vel *= 0.85
 	return vel
-		
 
 func _on_grab_area_entered(area):
 	if area.is_in_group("blocking"):

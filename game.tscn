@@ -2,9 +2,9 @@
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://table/table.tscn" type="PackedScene" id=2]
-[ext_resource path="res://items/coffee/coffee.tscn" type="PackedScene" id=3]
-[ext_resource path="res://items/tits.tscn" type="PackedScene" id=4]
-[ext_resource path="res://items/burner/burner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://items/tits.tscn" type="PackedScene" id=3]
+[ext_resource path="res://items/burner/burner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://items/coffee_test.tscn" type="PackedScene" id=5]
 [ext_resource path="res://items/door/door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/hand.tscn" type="PackedScene" id=7]
 [ext_resource path="res://cow/cow.tscn" type="PackedScene" id=8]
@@ -25,26 +25,18 @@ script = ExtResource( 1 )
 
 sort_enabled = true
 
-[node name="coffee2" parent="items" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( 960, 384 )
-
-[node name="coffee" parent="items" index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 800, 400 )
-
-[node name="tits" parent="items" index="2" instance=ExtResource( 4 )]
+[node name="tits" parent="items" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 484, 900 )
 
-[node name="coffee3" parent="items" index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 384, 384 )
-
-[node name="burner" parent="items" index="4" instance=ExtResource( 5 )]
+[node name="burner" parent="items" index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 1152, 384 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="coffee_test" parent="items" index="2" instance=ExtResource( 5 )]
+
+position = Vector2( 672, 288 )
 
 [node name="doors" type="Node2D" parent="." index="2"]
 
@@ -122,5 +114,7 @@ shape = SubResource( 1 )
 position = Vector2( 1824, 1536 )
 
 [node name="hand_quest" parent="." index="7" instance=ExtResource( 9 )]
+
+position = Vector2( 0, 288 )
 
 

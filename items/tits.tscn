@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 40.9137, 28.4398 )
+extents = Vector2( 44.1212, 28.4398 )
 
 [node name="tits" type="Area2D" groups=[
 "grab",

@@ -16,14 +16,14 @@ func _ready():
 
 func _on_burn_area_entered(area):
 	if is_on and area.is_in_group("heatable"):
-		$timer.start()
+		$fire/timer.start()
 		heating = area
 
 
 func _on_burn_area_exited(area):
 	if area == heating:
 		heating = null
-		$timer.stop()
+		$fire/timer.stop()
 
 
 func _on_timer_timeout():

@@ -21,7 +21,7 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 custom_solver_bias = 0.0
 extents = Vector2( 32.657, 21.4707 )
 
-[node name="hand_quest" type="Node2D" index="0"]
+[node name="hand_quest" type="Node2D"]
 
 position = Vector2( 0, 384 )
 script = ExtResource( 1 )
