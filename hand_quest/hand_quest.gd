@@ -8,15 +8,18 @@ signal end_grab
 const welcome = "hi, i would like a cup of steaming hot milk with three added coffee beans. I would like the milk to come straight from the cow please."
 const win = "perfect! exactly what i asked for. have a nice day!"
 const empty = "ehhhhhh... are you seriously serving me an empty cup sir??"
+
+onready var label = $layer/speech/label
+
 func _ready():
-	$layer/speech/label.text = welcome
+	label.text = welcome
 
 func validate(coffee):
 	match coffee.contents:
 		{ "milk": true, "coffee": true }:
-			$label.text = win
+			label.text = win
 		{ "milk": false, "coffee": false }:
-			$label.text = empty
+			label.text = empty
 		{ "milk": false, "coffee": true }:
 			pass
 

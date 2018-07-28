@@ -39,9 +39,17 @@ func add_content(content):
 
 func add_bean():
 	if missing_beans > 0:
+		match missing_beans:
+			3:
+				$beans/b3.show()
+			2: 
+				$beans/b2.show()
+			1:
+				$beans/b1.show()
 		missing_beans -= 1
 		if missing_beans == 0:
 			add_content("coffee")
+			
 			# display it somehow
 
 func set_coffee_state(state):

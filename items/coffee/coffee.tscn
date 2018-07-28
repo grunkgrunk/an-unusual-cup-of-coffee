@@ -14,7 +14,7 @@ radius = 24.785
 custom_solver_bias = 0.0
 extents = Vector2( 20.3287, 10 )
 
-[node name="coffee" groups=[
+[node name="coffee" index="0" groups=[
 "coffee",
 "heatable",
 ] instance=ExtResource( 1 )]
@@ -61,5 +61,44 @@ vframes = 8
 hframes = 8
 frame = 41
 _sections_unfolded = [ "Animation", "Z Index" ]
+
+[node name="beans" type="Node2D" parent="." index="7"]
+
+scale = Vector2( 0.4, 0.4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="b1" type="Sprite" parent="beans" index="0"]
+
+visible = false
+position = Vector2( 28.4303, -65.4533 )
+texture = ExtResource( 3 )
+frame = 9
+region_enabled = true
+region_rect = Rect2( 20, 112.732, 56, 34 )
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="b2" type="Sprite" parent="beans" index="1"]
+
+visible = false
+position = Vector2( 4.80848, -48.466 )
+texture = ExtResource( 3 )
+vframes = 8
+hframes = 8
+frame = 9
+region_enabled = true
+region_rect = Rect2( 116, 108.732, 52, 28 )
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="b3" type="Sprite" parent="beans" index="2"]
+
+visible = false
+position = Vector2( -30.5507, -59.5697 )
+texture = ExtResource( 3 )
+vframes = 8
+hframes = 8
+frame = 9
+region_enabled = true
+region_rect = Rect2( 218, 108.732, 46, 26 )
+_sections_unfolded = [ "Animation", "Region" ]
 
 

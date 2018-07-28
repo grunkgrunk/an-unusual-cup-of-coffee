@@ -97,7 +97,7 @@ _sections_unfolded = [ "Adjustments", "Ambient Light", "Background", "DOF Far Bl
 custom_solver_bias = 0.0
 extents = Vector2( 1056.99, 66.7565 )
 
-[node name="game" type="WorldEnvironment" index="0"]
+[node name="game" type="WorldEnvironment"]
 
 environment = SubResource( 2 )
 script = ExtResource( 1 )
