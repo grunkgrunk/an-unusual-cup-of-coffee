@@ -6,11 +6,14 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 65.5891
+radius = 11.8917
 
 [node name="wire" instance=ExtResource( 1 )]
 
+z_index = 99
+z_as_relative = false
 script = ExtResource( 2 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="CollisionShape2D" parent="." index="0"]
 
@@ -19,5 +22,20 @@ shape = SubResource( 1 )
 [node name="bottom" parent="." index="2"]
 
 script = null
+
+[node name="sprite" parent="." index="3"]
+
+visible = false
+
+[node name="tween" type="Tween" parent="." index="4"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="area_entered" from="." to="." method="_on_wire_area_entered"]
 
 

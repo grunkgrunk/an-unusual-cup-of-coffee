@@ -39,6 +39,13 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	$sprite.frame = state_to_frame[hand_state]
+	
+	for i in get_tree().get_nodes_in_group("item"):
+		connect("begin_touch", i, "_on_begin_touch")
+		connect("end_touch", i, "_on_end_touch")
+		connect("begin_grab", i, "_on_begin_grab")
+		connect("end_grab", i, "_on_end_grab")
+		
 
 func _process(delta):
 	update()

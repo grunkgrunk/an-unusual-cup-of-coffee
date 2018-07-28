@@ -77,7 +77,7 @@ extents = Vector2( 10, 29.6557 )
 
 position = Vector2( -3.13553, -27.6972 )
 rotation = -1.57131
-emitting = true
+emitting = false
 amount = 100
 lifetime = 0.7
 one_shot = false

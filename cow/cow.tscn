@@ -21,7 +21,9 @@ region_enabled = true
 region_rect = Rect2( 404, 445.464, 356, 324 )
 _sections_unfolded = [ "Region" ]
 
-[node name="butt" type="Area2D" parent="." index="1"]
+[node name="butt" type="Area2D" parent="." index="1" groups=[
+"butt",
+]]
 
 position = Vector2( -135.512, 20.3428 )
 input_pickable = true
