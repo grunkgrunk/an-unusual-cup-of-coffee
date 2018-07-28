@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://coffee_sprites-export.png" type="Texture" id=1]
+[ext_resource path="res://cow/cow.png" type="Texture" id=1]
+[ext_resource path="res://cow/tits.gd" type="Script" id=2]
+[ext_resource path="res://coffee_sprites-export.png" type="Texture" id=3]
+[ext_resource path="res://cow/milk_source.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -18,14 +21,14 @@ extents = Vector2( 47.7225, 33.171 )
 
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 404, 445.464, 356, 324 )
+region_rect = Rect2( 416, -0.634003, 353, 382.098 )
 _sections_unfolded = [ "Region" ]
 
 [node name="butt" type="Area2D" parent="." index="1" groups=[
 "butt",
 ]]
 
-position = Vector2( -135.512, 20.3428 )
+position = Vector2( -138.521, -104.518 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -38,9 +41,13 @@ audio_bus_name = "Master"
 
 shape = SubResource( 1 )
 
-[node name="tits" type="Area2D" parent="." index="2"]
+[node name="tits" type="Area2D" parent="." index="2" groups=[
+"item",
+"grab",
+"tits_mount",
+]]
 
-position = Vector2( -32.6183, 67.8813 )
+position = Vector2( -36.0897, -57.0897 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -48,19 +55,36 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tits" index="0"]
 
-position = Vector2( 6.17102, 0.881577 )
+position = Vector2( 1.27347, 7.87808 )
 shape = SubResource( 2 )
 
 [node name="tits_mount" type="Sprite" parent="tits" index="1"]
 
 position = Vector2( 2.46019, 38.3536 )
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 vframes = 8
 hframes = 8
 frame = 17
 _sections_unfolded = [ "Animation" ]
+
+[node name="sources" type="Node2D" parent="tits" index="2"]
+
+[node name="particles4" parent="tits/sources" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( -30.6685, 50.4342 )
+
+[node name="particles3" parent="tits/sources" index="1" instance=ExtResource( 4 )]
+
+position = Vector2( -18.6797, 53.4679 )
+
+[node name="particles2" parent="tits/sources" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 5.07555, 49.5964 )
+
+[node name="particles" parent="tits/sources" index="3" instance=ExtResource( 4 )]
 
 

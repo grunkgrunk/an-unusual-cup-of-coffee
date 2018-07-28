@@ -41,10 +41,14 @@ func _ready():
 	$sprite.frame = state_to_frame[hand_state]
 	
 	for i in get_tree().get_nodes_in_group("item"):
-		connect("begin_touch", i, "_on_begin_touch")
-		connect("end_touch", i, "_on_end_touch")
-		connect("begin_grab", i, "_on_begin_grab")
-		connect("end_grab", i, "_on_end_grab")
+		if i.has_method("_on_begin_touch"):
+			connect("begin_touch", i, "_on_begin_touch")
+		if i.has_method("_on_end_touch"):
+			connect("end_touch", i, "_on_end_touch")
+		if i.has_method("_on_begin_grab"):
+			connect("begin_grab", i, "_on_begin_grab")
+		if i.has_method("_on_end_grab"):
+			connect("end_grab", i, "_on_end_grab")
 		
 
 func _process(delta):
@@ -66,6 +70,7 @@ func _process(delta):
 			position.x = camera.position.x + clamp(diff.x, -half_screen, half_screen)
 			position.y = camera.position.y + clamp(diff.y, -half_screen, half_screen)
 			
+			
 			if holding:
 				if holding.has_method("interact"):
 					holding.interact(self)
@@ -76,6 +81,12 @@ func _process(delta):
 			var diff = position - camera.position
 			camera.position.x = position.x - clamp(diff.x, -half_screen, half_screen)
 			camera.position.y = position.y - clamp(diff.y, -half_screen, half_screen)
+			
+			
+			camera.position.x = max(camera.position.x, camera.limit_left + half_screen)
+			camera.position.x = min(camera.position.x, camera.limit_right - half_screen)
+			camera.position.y = max(camera.position.y, camera.limit_top + half_screen)
+			camera.position.y = min(camera.position.y, camera.limit_bottom - half_screen)
 
 
 func current_state():
@@ -99,8 +110,10 @@ func switch_state(state):
 			emit_signal("end_touch", self, touching)
 			touching = null
 		GRABBING:
-			emit_signal("end_grab", self, holding)
-			holding = null
+			if holding != null:
+				holding.z_index = 0
+				emit_signal("end_grab", self, holding)
+				holding = null
 	hand_state = state
 	$sprite.frame = state_to_frame[hand_state]
 	
@@ -113,7 +126,9 @@ func switch_state(state):
 			vel = Vector2()
 		GRABBING:
 			holding = get_overlap($grab)
-			emit_signal("begin_grab", self, holding)
+			if holding != null:
+				holding.z_index = 99
+				emit_signal("begin_grab", self, holding)
 
 func get_overlap(node):
 	var overlapping = node.get_overlapping_areas()

@@ -1,11 +1,7 @@
 extends Area2D
 
-enum INGREDIENTS { }
-
 enum COFFEE_STATE { COFFEE_MILK, COFFEE_BLACK, MILK, WATER, EMPTY }
 enum HEAT_STATE { NORMAL, LOW, MEDIUM, HIGH }
-enum HEAT_DIRECTION { UP, DOWN }
-enum CONTENT {MILK, WATER, COFFEE}
 
 var coffee_state = EMPTY
 var heat_state = NORMAL
@@ -49,6 +45,8 @@ func add_content(content):
 			pass
 		{ "coffee": false, "milk": false, "water": true }:
 			set_coffee_state(WATER)
+		{ "coffee": false, "milk": true, "water": false }:
+			set_coffee_state(MILK)
 
 func set_coffee_state(state):
 	coffee_state = state

@@ -3,7 +3,7 @@
 [ext_resource path="res://items/physics.gd" type="Script" id=1]
 [ext_resource path="res://coffee_sprites-export.png" type="Texture" id=2]
 
-[node name="item" type="Area2D" groups=[
+[node name="item" type="Area2D" index="0" groups=[
 "item",
 "grab",
 ]]
@@ -46,6 +46,17 @@ texture = ExtResource( 2 )
 vframes = 8
 hframes = 8
 _sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="player" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="timeout" from="bottom/collide_timer" to="bottom" method="_on_collide_timer_timeout"]
 

@@ -82,12 +82,4 @@ shape = SubResource( 3 )
 
 position = Vector2( 4.82726, 46.416 )
 
-[connection signal="area_entered" from="grab" to="." method="_on_grab_area_entered"]
-
-[connection signal="area_exited" from="grab" to="." method="_on_grab_area_exited"]
-
-[connection signal="area_entered" from="surface" to="." method="_on_surface_area_entered"]
-
-[connection signal="area_exited" from="surface" to="." method="_on_surface_area_exited"]
-
 
