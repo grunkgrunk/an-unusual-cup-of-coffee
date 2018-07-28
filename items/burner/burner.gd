@@ -9,7 +9,6 @@ func _on_burn_area_entered(area):
 		heating = area
 		
 func _on_burn_area_exited(area):
-	print("area fire")
 	if area == heating:
 		heating = null
 		$timer.stop()

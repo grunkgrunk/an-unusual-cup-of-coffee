@@ -1,24 +1,23 @@
 extends KinematicBody2D
 
-var movespeed = 100
-var coffee = 100 
-var vel = Vector2()
+export (NodePath) var camera_path
+
 enum hand_states {HOVERING, POINTING, TOUCHING, GRABBING}
-var hand_state = HOVERING
-var in_area = null
-var is_holding = false
-
-var blocked = false
-
+const movespeed = 100
+const state_to_frame = {
+	HOVERING: 2,
+	TOUCHING: 3,
+	POINTING: 4,
+	GRABBING: 5
+}
 const half_screen = 128 * 6 / 2
 
-export (NodePath) var camera_path
-onready var camera = get_node(camera_path)
+var vel = Vector2()
+var hand_state = HOVERING
+var holding = null
+var touching = null
 
-const HOVER = 2
-const TOUCH = 3
-const GRAB = 5
-const POINT = 4
+onready var camera = get_node(camera_path)
 
 signal begin_hover
 signal end_hover
@@ -29,15 +28,7 @@ signal end_grab
 signal begin_touch
 signal end_touch
 
-const state_to_frame = {
-	HOVERING: HOVER,
-	TOUCHING: TOUCH,
-	POINTING: POINT,
-	GRABBING: GRAB
-}
-
 func _draw():
-	#var pos = position + $bottom.position
 	var pos = $bottom.position - Vector2(30, 0)
 	var size = Vector2(60, 800)
 	var rect = Rect2(pos, size)
@@ -68,16 +59,17 @@ func _process(delta):
 			position.x = camera.position.x + clamp(diff.x, -half_screen, half_screen)
 			position.y = camera.position.y + clamp(diff.y, -half_screen, half_screen)
 			
-			if is_holding:
-				if in_area.has_method("interact"):
-					in_area.interact(self)
+			if holding:
+				if holding.has_method("interact"):
+					holding.interact(self)
 				else:
-					in_area.position = position - in_area.get_node("offset").position
+					holding.position = position - holding.get_node("offset").position
 		TOUCHING:
 			camera.position -= movement
 			var diff = position - camera.position
 			camera.position.x = position.x - clamp(diff.x, -half_screen, half_screen)
 			camera.position.y = position.y - clamp(diff.y, -half_screen, half_screen)
+
 
 func current_state():
 	if Input.is_action_pressed("grab"):
@@ -95,29 +87,42 @@ func switch_state(state):
 	# ending this state
 	match prev_hand_state:
 		HOVERING:
-			emit_signal("end_hover", self, in_area)
+			pass
 		TOUCHING:
-			emit_signal("end_touch", self, in_area)
+			emit_signal("end_touch", self, touching)
+			touching = null
 		GRABBING:
-			emit_signal("end_grab", self, in_area)
+			emit_signal("end_grab", self, holding)
+			holding = null
 	hand_state = state
 	$sprite.frame = state_to_frame[hand_state]
 	
 	match hand_state:
 		HOVERING:
-			emit_signal("begin_hover", self, in_area)
 			vel = Vector2()
-			is_holding = false
 		TOUCHING:
-			var overlapping = $surface.get_overlapping_areas()
-			emit_signal("begin_touch", self, in_area)
+			var touching = get_overlap($surface)
+			emit_signal("begin_touch", self, touching)
 			vel = Vector2()
-			is_holding = false
 		GRABBING:
-			var overlapping = $grab.get_overlapping_areas()
-			
-			emit_signal("begin_grab", self, in_area)
-			is_holding = in_area != null
+			holding = get_overlap($grab)
+			emit_signal("begin_grab", self, holding)
+
+func get_overlap(node):
+	var overlapping = node.get_overlapping_areas()
+	var blocking = false
+	var item = null
+	for o in overlapping:
+		if o.is_in_group("grab") and item == null:
+			item = o
+		if o.is_in_group("door"):
+			return o
+		if o.is_in_group("blocking"):
+			blocking = true
+	if not blocking:
+		return item
+	return null
+	
 
 func move():
 	var dir = Vector2()
@@ -134,27 +139,3 @@ func move():
 	
 	vel *= 0.85
 	return vel
-
-func _on_grab_area_entered(area):
-	if area.is_in_group("blocking"):
-		blocked = true
-	
-	var is_door = area.is_in_group("door")
-	print(area.name)
-	if area.is_in_group("grab") and not is_holding and (not blocked or is_door):
-		in_area = area
-
-func _on_grab_area_exited(area):
-	if area.is_in_group("blocking"):
-		blocked = false
-	if area == in_area:
-		in_area = null
-		is_holding = false
-
-
-func _on_surface_area_entered(area):
-	pass
-
-
-func _on_surface_area_exited(area):
-	pass # replace with function body

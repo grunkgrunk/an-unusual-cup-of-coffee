@@ -27,7 +27,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Offset", "Transform" ]
+_sections_unfolded = [ "Audio Bus", "Collision", "Offset", "Pickable", "Transform" ]
 
 [node name="sprite" type="Sprite" parent="." index="0"]
 
@@ -61,5 +61,9 @@ _sections_unfolded = [ "Collision", "Transform" ]
 position = Vector2( 2.4924, 0 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
+
+[connection signal="area_entered" from="full" to="." method="_on_full_area_entered"]
+
+[connection signal="area_exited" from="full" to="." method="_on_full_area_exited"]
 
 
