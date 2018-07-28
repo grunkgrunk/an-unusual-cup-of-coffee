@@ -35,8 +35,6 @@ func _ready():
 	set_coffee_state(EMPTY)
 	set_heat_state(NORMAL)
 
-
-
 func add_content(content):
 	contents[content] = true
 	match contents:

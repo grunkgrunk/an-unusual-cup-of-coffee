@@ -21,7 +21,9 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 custom_solver_bias = 0.0
 extents = Vector2( 32.657, 21.4707 )
 
-[node name="hand_quest" type="Node2D"]
+[node name="hand_quest" type="Node2D" groups=[
+"hand",
+]]
 
 position = Vector2( 0, 384 )
 script = ExtResource( 1 )
@@ -80,7 +82,7 @@ shape = SubResource( 3 )
 
 [node name="hold" type="Position2D" parent="." index="3"]
 
-position = Vector2( 331.062, -48.9028 )
+position = Vector2( 341.624, -69.2728 )
 
 [connection signal="area_entered" from="hand" to="." method="_on_hand_area_entered"]
 

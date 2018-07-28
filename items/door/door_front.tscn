@@ -15,8 +15,8 @@ extents = Vector2( 70.6887, 68.8271 )
 
 [node name="door_front" type="Area2D" groups=[
 "door",
-"interactable",
 "grab",
+"interactable",
 ]]
 
 input_pickable = true

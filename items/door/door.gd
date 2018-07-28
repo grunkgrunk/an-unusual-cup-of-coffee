@@ -7,8 +7,6 @@ func _ready():
 	start_pos = global_position
 	show()
 	
-
 func interact(hand):
-	print("hello")
 	var pos = hand.position - $offset.position
 	global_position.x = clamp(pos.x, start_pos.x - 140, start_pos.x)

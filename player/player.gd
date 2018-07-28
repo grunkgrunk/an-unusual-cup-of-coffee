@@ -95,24 +95,28 @@ func switch_state(state):
 	# ending this state
 	match prev_hand_state:
 		HOVERING:
-			emit_signal("end_hover")
+			emit_signal("end_hover", self, in_area)
 		TOUCHING:
-			emit_signal("end_touch")
+			emit_signal("end_touch", self, in_area)
 		GRABBING:
-			emit_signal("end_grab")
+			emit_signal("end_grab", self, in_area)
 	hand_state = state
 	$sprite.frame = state_to_frame[hand_state]
+	
 	match hand_state:
 		HOVERING:
-			emit_signal("begin_hover")
+			emit_signal("begin_hover", self, in_area)
 			vel = Vector2()
 			is_holding = false
 		TOUCHING:
-			emit_signal("begin_touch")
+			var overlapping = $surface.get_overlapping_areas()
+			emit_signal("begin_touch", self, in_area)
 			vel = Vector2()
 			is_holding = false
 		GRABBING:
-			emit_signal("begin_grab")
+			var overlapping = $grab.get_overlapping_areas()
+			
+			emit_signal("begin_grab", self, in_area)
 			is_holding = in_area != null
 
 func move():
@@ -136,7 +140,7 @@ func _on_grab_area_entered(area):
 		blocked = true
 	
 	var is_door = area.is_in_group("door")
-	
+	print(area.name)
 	if area.is_in_group("grab") and not is_holding and (not blocked or is_door):
 		in_area = area
 

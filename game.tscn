@@ -2,9 +2,9 @@
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://table/table.tscn" type="PackedScene" id=2]
-[ext_resource path="res://items/tits.tscn" type="PackedScene" id=3]
+[ext_resource path="res://items/coffee/coffee.tscn" type="PackedScene" id=3]
 [ext_resource path="res://items/burner/burner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://items/coffee_test.tscn" type="PackedScene" id=5]
+[ext_resource path="res://items/tits/tits.tscn" type="PackedScene" id=5]
 [ext_resource path="res://items/door/door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/hand.tscn" type="PackedScene" id=7]
 [ext_resource path="res://cow/cow.tscn" type="PackedScene" id=8]
@@ -25,21 +25,21 @@ script = ExtResource( 1 )
 
 sort_enabled = true
 
-[node name="tits" parent="items" index="0" instance=ExtResource( 3 )]
+[node name="coffee" parent="items" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 484, 900 )
+position = Vector2( 346.61, 367.149 )
 
 [node name="burner" parent="items" index="1" instance=ExtResource( 4 )]
 
-position = Vector2( 1152, 384 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 864, 384 )
 
-[node name="coffee_test" parent="items" index="2" instance=ExtResource( 5 )]
+[node name="tits" parent="items" index="2" instance=ExtResource( 5 )]
 
-position = Vector2( 672, 288 )
+position = Vector2( 480, 864 )
 
 [node name="doors" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 position = Vector2( 0, -384 )
 
 [node name="door" parent="doors" index="0" instance=ExtResource( 6 )]
@@ -60,7 +60,7 @@ position = Vector2( 1056, 2016 )
 
 [node name="camera" type="Camera2D" parent="." index="3"]
 
-position = Vector2( 960, 288 )
+position = Vector2( 340.88, 252.823 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -87,16 +87,18 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 [node name="hand" parent="." index="4" instance=ExtResource( 7 )]
 
-position = Vector2( 960, 288 )
+position = Vector2( 444.653, 302.071 )
 
 [node name="floor" type="Node2D" parent="." index="5"]
 
+editor/display_folded = true
 position = Vector2( 672, 1728 )
 
 [node name="surface" type="Area2D" parent="floor" index="0" groups=[
 "surface",
 ]]
 
+position = Vector2( 0.841919, 6.73511 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

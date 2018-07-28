@@ -4,6 +4,7 @@ var vel = Vector2()
 
 var is_on_surface = false
 var is_moved = false
+var holding_hand = null
 
 func _ready():
 	connect("area_entered", self, "_on_bottom_area_entered")
@@ -22,20 +23,19 @@ func _process(delta):
 
 func _on_bottom_area_entered(area):
 	if area.is_in_group("surface"):
-		$collide_timer.wait_time = rand_range(0.05, 0.1)
-		$collide_timer.start()
-
+		vel = Vector2()
+		is_on_surface = true
 
 func _on_bottom_area_exited(area):
 	if area.is_in_group("surface"):
 		is_on_surface = false
 	
-func _on_begin_grab():
-	vel = Vector2()
-	is_moved = true
-func _on_end_grab():
-	is_moved = false
-
-func _on_collide_timer_timeout():
-	vel = Vector2()
-	is_on_surface = true
+func _on_begin_grab(hand, obj):
+	if obj == get_parent():
+		holding_hand = hand
+		vel = Vector2()
+		is_moved = true
+		
+func _on_end_grab(hand, obj):
+	if obj == get_parent() and hand == holding_hand:
+		is_moved = false

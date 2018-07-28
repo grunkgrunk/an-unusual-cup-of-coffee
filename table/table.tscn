@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 670.503, 62.0789 )
+extents = Vector2( 670.503, 52.9738 )
 
 [node name="table" type="Node2D"]
 
@@ -48,6 +48,7 @@ audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="surface" index="0"]
 
+position = Vector2( 0, 12.0011 )
 shape = SubResource( 1 )
 
 
