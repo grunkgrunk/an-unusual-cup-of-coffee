@@ -63,28 +63,17 @@ func set_heat_state(state):
 func heat_up():
 	match heat_state:
 		NORMAL:
-			return LOW
+			set_heat_state(LOW)
 		LOW:
-			return MEDIUM
+			set_heat_state(MEDIUM)
 		MEDIUM:
-			return HIGH
-	return HIGH
+			set_heat_state(HIGH)
 	
 func heat_down():
 	match heat_state:
 		HIGH:
-			return MEDIUM
+			set_heat_state(MEDIUM)
 		MEDIUM:
-			return LOW
+			set_heat_state(LOW)
 		LOW:
-			return NORMAL
-	return NORMAL
-		
-func step_heat(dir):
-	match dir:
-		UP:
-			set_heat_state(heat_up())
-		DOWN:
-			set_heat_state(heat_down())
-		
-	
+			set_heat_state(NORMAL)

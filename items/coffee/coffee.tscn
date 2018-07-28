@@ -15,7 +15,9 @@ custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
 [node name="coffee" type="Area2D" groups=[
+"coffee",
 "grab",
+"heatable",
 ]]
 
 input_pickable = true

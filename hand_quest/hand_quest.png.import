@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/milk.png-46e13004e4914acbf016444f42e773ff.stex"
+path="res://.import/hand_quest.png-e8697dbfd2cd885d79b1b60938371652.stex"
 
 [deps]
 
-source_file="res://milk.png"
-dest_files=[ "res://.import/milk.png-46e13004e4914acbf016444f42e773ff.stex" ]
+source_file="res://hand_quest/hand_quest.png"
+dest_files=[ "res://.import/hand_quest.png-e8697dbfd2cd885d79b1b60938371652.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mug.png-289d733f58dadff5e81424defe4c2db3.stex"
+path="res://.import/milk.png-07adad70f5d0f1e8587af63170883897.stex"
 
 [deps]
 
-source_file="res://mug.png"
-dest_files=[ "res://.import/mug.png-289d733f58dadff5e81424defe4c2db3.stex" ]
+source_file="res://cow/milk.png"
+dest_files=[ "res://.import/milk.png-07adad70f5d0f1e8587af63170883897.stex" ]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://table/table.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://items/door/door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/hand.tscn" type="PackedScene" id=7]
 [ext_resource path="res://cow/cow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://hand_quest/hand_quest.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -67,7 +68,7 @@ position = Vector2( 1056, 2016 )
 
 [node name="camera" type="Camera2D" parent="." index="3"]
 
-position = Vector2( 288, 864 )
+position = Vector2( 960, 288 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -94,7 +95,7 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 [node name="hand" parent="." index="4" instance=ExtResource( 7 )]
 
-position = Vector2( 390.556, 884.762 )
+position = Vector2( 960, 288 )
 
 [node name="floor" type="Node2D" parent="." index="5"]
 
@@ -119,5 +120,7 @@ shape = SubResource( 1 )
 [node name="cow" parent="." index="6" instance=ExtResource( 8 )]
 
 position = Vector2( 1824, 1536 )
+
+[node name="hand_quest" parent="." index="7" instance=ExtResource( 9 )]
 
 
