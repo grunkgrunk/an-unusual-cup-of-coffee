@@ -26,7 +26,7 @@ func interact(hand):
 
 func _on_begin_grab(hand, obj):
 	if obj == self:
-		print("gee")
+		pass
 
 func _on_end_grab(hand, obj):
 	if obj == self and not connected:

@@ -16,7 +16,25 @@ const cold_coffee_milk = "nice.. it has all the ingredients i asked for. but it'
 onready var label = $speech/label
 onready var speech = $speech
 
+export(NodePath) var camera_path
+onready var camera = get_node(camera_path)
+var start_pos = null
+var target_pos = null
+
+func _process(delta):
+	if camera:
+		speech.global_position.x = camera.position.x - 384
+
 func _ready():
+	target_pos = position
+	start_pos = $start_pos.global_position
+	position = start_pos
+	
+	$tween.interpolate_property(self, "position",
+        start_pos, target_pos, 2,
+        Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+	$tween.start()
+	
 	label.text = welcome
 	for q in get_tree().get_nodes_in_group("player"):
 		connect("begin_grab", q, "_on_other_hand_begin_grab")
@@ -50,6 +68,14 @@ func _on_hand_area_entered(area):
 		holding.position = $hand/hold.global_position
 		label.set_text(validate(holding))
 		speech.show()
+		
+		var rand_dir = Vector2(1, 0).rotated(rand_range(0, 2*PI))*10
+		
+		#$tween.interpolate_property(self, "position",
+	    #    position, position + rand_dir,
+	    #    Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+		#$tween.start()
+		
 
 func _on_hand_area_exited(area):
 	if area == holding:

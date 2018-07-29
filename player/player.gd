@@ -163,9 +163,6 @@ func move():
 
 func _on_other_hand_begin_grab(other_hand, obj):
 	if holding:
-		#print(other_hand)
-		#print(other_hand.get_node("hold"))
-		#holding.position = other_hand.get_node("hold").global_position
 		holding.z_index = 0
 		holding = null
 	

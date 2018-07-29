@@ -28,6 +28,7 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 position = Vector2( 383.658, 384 )
 script = ExtResource( 1 )
+camera_path = null
 
 [node name="sprite" type="Sprite" parent="." index="0"]
 
@@ -58,8 +59,10 @@ position = Vector2( 341.624, -69.2728 )
 
 [node name="speech" type="Sprite" parent="." index="2"]
 
-position = Vector2( -237.665, -284.905 )
+position = Vector2( -380.937, -296.459 )
 texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset" ]
 
 [node name="label" type="RichTextLabel" parent="speech" index="0"]
 
@@ -67,10 +70,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -107.0
-margin_top = -50.0
-margin_right = 73.0
-margin_bottom = 40.0
+margin_left = 38.0
+margin_top = 39.0
+margin_right = 218.0
+margin_bottom = 129.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -91,6 +94,19 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode", "Rect", "custom_colors", "custom_fonts" ]
+
+[node name="tween" type="Tween" parent="." index="3"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="start_pos" type="Position2D" parent="." index="4"]
+
+position = Vector2( -390.531, -39.2842 )
 
 [connection signal="area_entered" from="hand" to="." method="_on_hand_area_entered"]
 

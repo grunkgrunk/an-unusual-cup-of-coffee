@@ -229,6 +229,7 @@ position = Vector2( 672, -192 )
 [node name="hand_quest" parent="." index="5" instance=ExtResource( 10 )]
 
 position = Vector2( 0, 381.287 )
+camera_path = NodePath("../camera")
 
 [node name="camera" type="Camera2D" parent="." index="6"]
 
