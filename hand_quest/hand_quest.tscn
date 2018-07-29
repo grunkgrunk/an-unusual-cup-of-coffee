@@ -4,25 +4,25 @@
 [ext_resource path="res://hand_quest/hand_quest.png" type="Texture" id=2]
 [ext_resource path="res://hand_quest/speech.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.657, 21.4707 )
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=2]
 
 hinting = 2
 font_path = "res://PICO-8.ttf"
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 
 size = 8
 use_mipmaps = false
 use_filter = false
-font_data = SubResource( 1 )
+font_data = SubResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="hand_quest" type="Node2D" groups=[
+[node name="hand_quest" type="Node2D" index="0" groups=[
 "hand",
 ]]
 
@@ -35,8 +35,11 @@ texture = ExtResource( 2 )
 region_rect = Rect2( 55.375, 15.5457, 0, 0 )
 _sections_unfolded = [ "Animation", "Region" ]
 
-[node name="hand" type="Area2D" parent="." index="1"]
+[node name="hand" type="Area2D" parent="." index="1" groups=[
+"quest",
+]]
 
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -48,13 +51,13 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hand" index="0"]
 
 position = Vector2( 330.656, -42.4103 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
-[node name="hold" type="Position2D" parent="." index="2"]
+[node name="hold" type="Position2D" parent="hand" index="1"]
 
 position = Vector2( 341.624, -69.2728 )
 
-[node name="layer" type="CanvasLayer" parent="." index="3"]
+[node name="layer" type="CanvasLayer" parent="." index="2"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -83,7 +86,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = false
 bbcode_text = ""

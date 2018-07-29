@@ -13,7 +13,7 @@
 [ext_resource path="res://player/hand.tscn" type="PackedScene" id=11]
 [ext_resource path="res://coffee_sprites-export.png" type="Texture" id=12]
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="Environment" id=1]
 
 background_mode = 4
 background_sky_custom_fov = 0.0
@@ -92,14 +92,14 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Adjustments", "Ambient Light", "Background", "DOF Far Blur", "Fog", "Glow", "Resource", "SS Reflections", "SSAO", "Tonemap" ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1056.99, 66.7565 )
 
 [node name="game" type="WorldEnvironment"]
 
-environment = SubResource( 2 )
+environment = SubResource( 1 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material" ]
 
@@ -228,7 +228,7 @@ position = Vector2( 0, 288 )
 
 [node name="camera" type="Camera2D" parent="." index="6"]
 
-position = Vector2( 480, 1632 )
+position = Vector2( 362.296, 180.322 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -255,7 +255,7 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 [node name="hand" parent="." index="7" instance=ExtResource( 11 )]
 
-position = Vector2( 672, 1632 )
+position = Vector2( 534.679, 214.652 )
 
 [node name="floor" type="Node2D" parent="." index="8"]
 
@@ -278,7 +278,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor/surface" index="0"]
 
 position = Vector2( 0.989014, 30.6749 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="floor" index="1"]
 

@@ -49,8 +49,7 @@ func _ready():
 			connect("begin_grab", i, "_on_begin_grab")
 		if i.has_method("_on_end_grab"):
 			connect("end_grab", i, "_on_end_grab")
-		
-
+	
 func _process(delta):
 	update()
 	var movement = move() * delta
@@ -161,3 +160,12 @@ func move():
 	
 	vel *= 0.85
 	return vel
+
+func _on_other_hand_begin_grab(other_hand, obj):
+	if holding:
+		#print(other_hand)
+		#print(other_hand.get_node("hold"))
+		#holding.position = other_hand.get_node("hold").global_position
+		holding.z_index = 0
+		holding = null
+	
