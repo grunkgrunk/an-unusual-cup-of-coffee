@@ -1,18 +1,21 @@
 extends Area2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var mounted = false
+var holding = false	
 
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+func _on_begin_grab(hand, obj):
+	if obj == self:
+		holding = true
 
 func _on_end_grab(hand, obj):
 	if obj == self:
-		for o in get_overlapping_areas():
-			if o.is_in_group("coffee"):
-				o.add_bean()
-				queue_free()
-	
+		holding = false
+		if mounted:
+			queue_free()
+		
+
+func _on_bean_area_entered(area):
+	if area.is_in_group("coffee") and holding and not mounted:
+		mounted = true
+		area.add_bean()
+		hide()

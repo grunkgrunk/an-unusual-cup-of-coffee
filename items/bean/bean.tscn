@@ -34,4 +34,6 @@ shape = SubResource( 2 )
 
 frame = 8
 
+[connection signal="area_entered" from="." to="." method="_on_bean_area_entered"]
+
 

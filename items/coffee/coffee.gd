@@ -19,7 +19,7 @@ const heat_state_to_frame = {
 }
 
 var contents = {
-	"coffee": false,
+	"coffee_beans": false,
 	"milk": false,
 }
 
@@ -30,15 +30,17 @@ func _ready():
 func add_content(content):
 	contents[content] = true
 	match contents:
-		{ "coffee": true, "milk": true }:
-			set_coffee_state("coffee_milk")
-		{ "coffee": false, "milk": false }:
+		{ "coffee_beans": true, "milk": true }:
+			#set_coffee_state("coffee_milk")
+			pass
+		{ "coffee_beans": false, "milk": false }:
 			set_coffee_state("empty")
-		{ "coffee": false, "milk": true}:
+		{ "coffee_beans": false, "milk": true}:
 			set_coffee_state("milk")
 
 func add_bean():
 	if missing_beans > 0:
+		add_content("coffee_beans")
 		match missing_beans:
 			3:
 				$beans/b3.show()
@@ -47,10 +49,7 @@ func add_bean():
 			1:
 				$beans/b1.show()
 		missing_beans -= 1
-		if missing_beans == 0:
-			add_content("coffee")
-			
-			# display it somehow
+
 
 func set_coffee_state(state):
 	coffee_state = state

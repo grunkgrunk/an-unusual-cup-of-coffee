@@ -22,7 +22,7 @@ use_filter = false
 font_data = SubResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="hand_quest" type="Node2D" index="0" groups=[
+[node name="hand_quest" type="Node2D" groups=[
 "hand",
 ]]
 
@@ -39,7 +39,6 @@ _sections_unfolded = [ "Animation", "Region" ]
 "quest",
 ]]
 
-visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
