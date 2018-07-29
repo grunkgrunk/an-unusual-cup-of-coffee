@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://hand_quest/hand_quest.gd" type="Script" id=1]
 [ext_resource path="res://hand_quest/hand_quest.png" type="Texture" id=2]
-[ext_resource path="res://hand_quest/speech.png" type="Texture" id=3]
+[ext_resource path="res://hand_quest/hand.gd" type="Script" id=3]
+[ext_resource path="res://hand_quest/speech.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32.657, 21.4707 )
+extents = Vector2( 43.8853, 31.1416 )
 
 [sub_resource type="DynamicFontData" id=2]
 
@@ -22,7 +23,7 @@ use_filter = false
 font_data = SubResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="hand_quest" type="Node2D" groups=[
+[node name="hand_quest" type="Node2D" index="0" groups=[
 "hand",
 ]]
 
@@ -37,7 +38,9 @@ region_rect = Rect2( 55.375, 15.5457, 0, 0 )
 _sections_unfolded = [ "Animation", "Region" ]
 
 [node name="hand" type="Area2D" parent="." index="1" groups=[
+"grab",
 "quest",
+"flesh",
 ]]
 
 input_pickable = true
@@ -47,6 +50,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hand" index="0"]
 
@@ -60,7 +64,7 @@ position = Vector2( 341.624, -69.2728 )
 [node name="speech" type="Sprite" parent="." index="2"]
 
 position = Vector2( -380.937, -296.459 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 centered = false
 _sections_unfolded = [ "Offset" ]
 
@@ -118,8 +122,6 @@ autostart = false
 [connection signal="area_entered" from="hand" to="." method="_on_hand_area_entered"]
 
 [connection signal="area_exited" from="hand" to="." method="_on_hand_area_exited"]
-
-[connection signal="tween_step" from="tween" to="." method="_on_tween_tween_step"]
 
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
 

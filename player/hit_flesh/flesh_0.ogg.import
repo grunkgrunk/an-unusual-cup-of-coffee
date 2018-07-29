@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flesh_0.ogg-b24bd21c080d0bcea83fd3273687f768.oggstr"
+
+[deps]
+
+source_file="res://player/hit_flesh/flesh_0.ogg"
+dest_files=[ "res://.import/flesh_0.ogg-b24bd21c080d0bcea83fd3273687f768.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

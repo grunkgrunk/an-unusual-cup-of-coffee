@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bundsen_drop_2.ogg-e9d539d5e1b48353baf09434c88f5313.oggstr"
+
+[deps]
+
+source_file="res://items/burner/bundsen_drop_2.ogg"
+dest_files=[ "res://.import/bundsen_drop_2.ogg-e9d539d5e1b48353baf09434c88f5313.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

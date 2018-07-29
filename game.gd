@@ -1,5 +1,7 @@
 extends Node
 
+#onready var timer = Timer()
+
 func _ready():
 	var topleft = $borders/topleft.global_position
 	var bottomright = $borders/bottomright.global_position

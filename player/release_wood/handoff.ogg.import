@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/handoff.ogg-9d1c92d7c17170750dc5e352a8eb11f8.oggstr"
+
+[deps]
+
+source_file="res://player/release_wood/handoff.ogg"
+dest_files=[ "res://.import/handoff.ogg-9d1c92d7c17170750dc5e352a8eb11f8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

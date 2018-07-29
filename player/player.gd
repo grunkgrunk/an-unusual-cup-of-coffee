@@ -106,6 +106,7 @@ func switch_state(state):
 		HOVERING:
 			pass
 		TOUCHING:
+			$hand_off.play()
 			emit_signal("end_touch", self, touching)
 			touching = null
 		GRABBING:
@@ -120,13 +121,21 @@ func switch_state(state):
 		HOVERING:
 			vel = Vector2()
 		TOUCHING:
-			var ra = str(randi() % 3)
-			get_node("hit_wood_"+ra).play()
+
 			var touching = get_overlap($surface)
+			var played_sound = false
+			if touching:
+				if touching.is_in_group("flesh"):
+					played_sound = true
+					var ra = str(randi() % 2)
+					get_node("hit_flesh_"+ra).play()
+			if not played_sound:
+				var ra = str(randi() % 3)
+				get_node("hit_wood_"+ra).play()
+			
 			emit_signal("begin_touch", self, touching)
 			vel = Vector2()
 		GRABBING:
-
 			holding = get_overlap($grab)
 			if holding != null:
 				holding.z_index = 99

@@ -5,7 +5,12 @@ var vel = Vector2()
 var is_on_surface = false
 var holding_hand = null
 
+export(Array, String) var audio_nodes = []
+
 func _ready():
+	if not audio_nodes:
+		audio_nodes = []
+		
 	connect("area_entered", self, "_on_bottom_area_entered")
 	connect("area_exited", self, "_on_bottom_area_exited")
 	
@@ -24,6 +29,9 @@ func _on_bottom_area_entered(area):
 	if area.is_in_group("surface"):
 		vel = Vector2()
 		is_on_surface = true
+		if audio_nodes.size() > 0 and holding_hand == null:
+			var rnd = randi() % audio_nodes.size()
+			get_node(audio_nodes[rnd]).play() 
 
 func _on_bottom_area_exited(area):
 	if area.is_in_group("surface"):

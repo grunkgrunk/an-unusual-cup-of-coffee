@@ -15,4 +15,5 @@ func _on_begin_touch(hand, obj):
 func _on_tits_mounted():
 	monitoring = true
 	show()
+	$moo.play()
 	

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flesh_drop.ogg-c9b047e8c664f6e4cad4816f94a4fd9c.oggstr"
+
+[deps]
+
+source_file="res://items/tits/flesh_drop.ogg"
+dest_files=[ "res://.import/flesh_drop.ogg-c9b047e8c664f6e4cad4816f94a4fd9c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

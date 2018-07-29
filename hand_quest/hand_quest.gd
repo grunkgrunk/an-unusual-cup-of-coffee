@@ -2,7 +2,6 @@ extends Node2D
 
 signal game_over
 
-
 var holding = null
 signal begin_grab
 signal end_grab

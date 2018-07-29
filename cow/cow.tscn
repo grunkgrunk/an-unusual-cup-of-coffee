@@ -1,29 +1,31 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://cow/cow.png" type="Texture" id=1]
 [ext_resource path="res://cow/tits.gd" type="Script" id=2]
 [ext_resource path="res://coffee_sprites-export.png" type="Texture" id=3]
 [ext_resource path="res://cow/milk_source.tscn" type="PackedScene" id=4]
+[ext_resource path="res://cow/moo.wav" type="AudioStream" id=5]
+[ext_resource path="res://cow/entire_cow.gd" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=2]
 
 min_value = 0.0
 max_value = 100.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.00141279, 100 ), 425.043, 425.043, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
+[sub_resource type="CurveTexture" id=3]
 
 flags = 4
 width = 2048
-curve = SubResource( 3 )
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=4]
 
 render_priority = 0
 trail_divisor = 1
@@ -49,7 +51,7 @@ tangential_accel = 0.0
 tangential_accel_random = 0.0
 damping = 10.0
 damping_random = 0.2
-damping_curve = SubResource( 4 )
+damping_curve = SubResource( 3 )
 angle = 0.0
 angle_random = 0.0
 scale = 20.0
@@ -64,7 +66,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Damping", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Scale", "Spread" ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 47.7225, 33.171 )
@@ -111,7 +113,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 5 )
+process_material = SubResource( 4 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -122,6 +124,7 @@ _sections_unfolded = [ "Process Material", "Time", "Transform" ]
 "item",
 "grab",
 "tits_mount",
+"flesh",
 ]]
 
 position = Vector2( -36.0897, -57.0897 )
@@ -130,6 +133,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitoring = false
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 2 )
@@ -137,7 +141,7 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tits" index="0"]
 
 position = Vector2( 1.27347, 7.87808 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="tits_mount" type="Sprite" parent="tits" index="1"]
 
@@ -149,6 +153,8 @@ frame = 17
 _sections_unfolded = [ "Animation" ]
 
 [node name="sources" type="Node2D" parent="tits" index="2"]
+
+editor/display_folded = true
 
 [node name="particles4" parent="tits/sources" index="0" instance=ExtResource( 4 )]
 
@@ -163,5 +169,37 @@ position = Vector2( -18.6797, 53.4679 )
 position = Vector2( 5.07555, 49.5964 )
 
 [node name="particles" parent="tits/sources" index="3" instance=ExtResource( 4 )]
+
+[node name="moo" type="AudioStreamPlayer2D" parent="tits" index="3"]
+
+position = Vector2( 36.0897, 57.0897 )
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="entire_cow" type="Area2D" parent="." index="3" groups=[
+"item",
+"grab",
+"flesh",
+]]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="entire_cow" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -85.4127, 183.059, -87.7381, -10.9182, 16.1496, -5.17676, 40.2433, -64.6366, 45.7529, 179.988, 111.868, 188.803, 101.95, -78.9614, 176.88, -101, 171.371, -174.828, 13.983, -152.505, -103.697, -139.767, -136.979, -133.862, -158.001, -89.2283, -162.763, -3.87048, -155.243, 181.985 )
 
 
