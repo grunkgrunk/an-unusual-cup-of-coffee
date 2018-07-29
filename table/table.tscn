@@ -9,6 +9,9 @@ extents = Vector2( 1056.58, 52.9738 )
 
 [node name="table" type="Node2D"]
 
+z_index = -2
+_sections_unfolded = [ "Z Index" ]
+
 [node name="table_tiles" type="TileMap" parent="." index="0"]
 
 mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://cow/cow.png" type="Texture" id=1]
 [ext_resource path="res://cow/tits.gd" type="Script" id=2]
@@ -12,20 +12,31 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Gradient" id=2]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 0, 0.894118, 0.211765, 1, 0, 0.529412, 0.317647, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+
+flags = 4
+gradient = SubResource( 2 )
+width = 2048
+
+[sub_resource type="Curve" id=4]
 
 min_value = 0.0
 max_value = 100.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.00141279, 100 ), 425.043, 425.043, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
+[sub_resource type="CurveTexture" id=5]
 
 flags = 4
 width = 2048
-curve = SubResource( 2 )
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=6]
 
 render_priority = 0
 trail_divisor = 1
@@ -51,12 +62,12 @@ tangential_accel = 0.0
 tangential_accel_random = 0.0
 damping = 10.0
 damping_random = 0.2
-damping_curve = SubResource( 3 )
+damping_curve = SubResource( 5 )
 angle = 0.0
 angle_random = 0.0
 scale = 20.0
 scale_random = 0.5
-color = Color( 0, 0.894118, 0.211765, 1 )
+color_ramp = SubResource( 3 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -66,7 +77,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Damping", "Emission Shape", "Gravity", "Initial Velocity", "Linear Accel", "Scale", "Spread" ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 47.7225, 33.171 )
@@ -113,7 +124,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 6 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -123,8 +134,8 @@ _sections_unfolded = [ "Process Material", "Time", "Transform" ]
 [node name="tits" type="Area2D" parent="." index="2" groups=[
 "item",
 "grab",
-"tits_mount",
 "flesh",
+"tits_mount",
 ]]
 
 position = Vector2( -36.0897, -57.0897 )
@@ -141,7 +152,7 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tits" index="0"]
 
 position = Vector2( 1.27347, 7.87808 )
-shape = SubResource( 5 )
+shape = SubResource( 7 )
 
 [node name="tits_mount" type="Sprite" parent="tits" index="1"]
 

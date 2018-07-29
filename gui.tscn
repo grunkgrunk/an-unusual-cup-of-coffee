@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://gui.gd" type="Script" id=1]
-[ext_resource path="res://PICO-8.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://table/wood.png" type="Texture" id=2]
+[ext_resource path="res://PICO-8.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://source_button.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=2]
@@ -16,7 +18,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 16
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=3]
@@ -24,10 +26,18 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="gui" type="CanvasLayer"]
+[sub_resource type="DynamicFont" id=4]
+
+size = 16
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="gui" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -36,7 +46,17 @@ scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 script = ExtResource( 1 )
 
-[node name="tween" type="Tween" parent="." index="0"]
+[node name="entire_screen" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 32, 32 )
+texture = ExtResource( 2 )
+centered = false
+vframes = 8
+hframes = 8
+frame = 63
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="tween" type="Tween" parent="." index="1"]
 
 repeat = false
 playback_process_mode = 1
@@ -45,7 +65,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="heading" type="Label" parent="." index="1"]
+[node name="heading" type="Label" parent="." index="2"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -95,9 +115,8 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "BBCode", "Grow Direction", "Hint", "Margin", "Rect", "Size Flags", "Visibility", "custom_colors", "custom_fonts" ]
 
-[node name="controls" type="Label" parent="." index="2"]
+[node name="controls" type="Label" parent="." index="3"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -114,7 +133,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "x,z and arrow keys to control"
+text = "x, z and arrow keys to control"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -139,13 +158,13 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.113725, 0.168627, 0.32549, 1 )
-text = "x,z and arrow keys to control"
+text = "x, z and arrow keys to control"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "Visibility", "custom_colors", "custom_fonts" ]
 
-[node name="by" type="Label" parent="." index="3"]
+[node name="by" type="Label" parent="." index="4"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -195,7 +214,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "Visibility", "custom_colors", "custom_fonts" ]
 
-[node name="game_over" type="Label" parent="." index="4"]
+[node name="game_over" type="Label" parent="." index="5"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -244,5 +263,34 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "Visibility", "custom_colors", "custom_fonts", "custom_styles" ]
+
+[node name="source_button" type="LinkButton" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 338.0
+margin_top = 386.0
+margin_right = 434.0
+margin_bottom = 406.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+text = "source"
+underline = 1
+script = ExtResource( 4 )
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[connection signal="pressed" from="source_button" to="source_button" method="_on_source_button_pressed"]
 
 

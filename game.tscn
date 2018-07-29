@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://table/table.tscn" type="PackedScene" id=2]
@@ -13,8 +13,9 @@
 [ext_resource path="res://player/hand.tscn" type="PackedScene" id=11]
 [ext_resource path="res://coffee_sprites-export.png" type="Texture" id=12]
 [ext_resource path="res://gui.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Trouble Makers (Loopable).wav" type="AudioStream" id=14]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1056.99, 66.7565 )
@@ -39,7 +40,7 @@ position = Vector2( 1721.45, 1814.81 )
 [node name="table" parent="." index="1" instance=ExtResource( 2 )]
 
 use_parent_material = true
-_sections_unfolded = [ "Material" ]
+_sections_unfolded = [ "Material", "Z Index" ]
 
 [node name="windows" type="Node2D" parent="." index="2"]
 
@@ -117,7 +118,7 @@ sort_enabled = true
 
 [node name="coffee mug" parent="items" index="0" instance=ExtResource( 5 )]
 
-position = Vector2( 1008.42, 446.355 )
+position = Vector2( 983.387, 390.15 )
 _sections_unfolded = [ "Z Index" ]
 
 [node name="bunsen burner" parent="items" index="1" instance=ExtResource( 6 )]
@@ -133,6 +134,8 @@ position = Vector2( 1645.99, 1710.58 )
 position = Vector2( 193.092, 1566.58 )
 
 [node name="beans" type="Node2D" parent="items" index="4"]
+
+editor/display_folded = true
 
 [node name="bean" parent="items/beans" index="0" instance=ExtResource( 9 )]
 
@@ -203,7 +206,7 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor/surface" index="0"]
 
 position = Vector2( 0.989014, 30.6749 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="floor" index="1"]
 
@@ -216,6 +219,15 @@ frame = 22
 _sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="gui" parent="." index="9" instance=ExtResource( 13 )]
+
+[node name="music" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 14 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Music"
 
 [connection signal="game_over" from="hand_quest" to="gui" method="_on_hand_quest_game_over"]
 

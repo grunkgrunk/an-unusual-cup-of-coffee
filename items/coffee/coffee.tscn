@@ -70,22 +70,23 @@ texture = ExtResource( 5 )
 vframes = 8
 hframes = 8
 frame = 28
-_sections_unfolded = [ "Animation", "Region" ]
+_sections_unfolded = [ "Animation", "Region", "Z Index" ]
 
 [node name="sprite" parent="." index="4"]
 
 flip_h = true
 frame = 25
 
-[node name="top" type="Sprite" parent="." index="6"]
+[node name="top" type="Sprite" parent="." index="5"]
 
+z_index = -1
 texture = ExtResource( 5 )
 vframes = 8
 hframes = 8
 frame = 41
 _sections_unfolded = [ "Animation", "Z Index" ]
 
-[node name="beans" type="Node2D" parent="." index="7"]
+[node name="beans" type="Node2D" parent="." index="6"]
 
 editor/display_folded = true
 scale = Vector2( 0.4, 0.4 )

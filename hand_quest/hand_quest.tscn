@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://hand_quest/hand_quest.gd" type="Script" id=1]
 [ext_resource path="res://hand_quest/hand_quest.png" type="Texture" id=2]
 [ext_resource path="res://hand_quest/hand.gd" type="Script" id=3]
 [ext_resource path="res://hand_quest/speech.png" type="Texture" id=4]
+[ext_resource path="res://hand_quest/welcome.ogg" type="AudioStream" id=5]
+[ext_resource path="res://hand_quest/emptycup.ogg" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -23,7 +25,7 @@ use_filter = false
 font_data = SubResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="hand_quest" type="Node2D" index="0" groups=[
+[node name="hand_quest" type="Node2D" groups=[
 "hand",
 ]]
 
@@ -38,8 +40,8 @@ region_rect = Rect2( 55.375, 15.5457, 0, 0 )
 _sections_unfolded = [ "Animation", "Region" ]
 
 [node name="hand" type="Area2D" parent="." index="1" groups=[
-"grab",
 "quest",
+"grab",
 "flesh",
 ]]
 
@@ -115,14 +117,45 @@ position = Vector2( -390.531, -39.2842 )
 [node name="timer" type="Timer" parent="." index="5"]
 
 process_mode = 1
-wait_time = 6.0
+wait_time = 10.0
 one_shot = true
 autostart = false
+
+[node name="welcome" type="AudioStreamPlayer2D" parent="." index="6"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Voice"
+area_mask = 1
+
+[node name="speech_timer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="empty_cup" type="AudioStreamPlayer2D" parent="." index="8"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Voice"
+area_mask = 1
 
 [connection signal="area_entered" from="hand" to="." method="_on_hand_area_entered"]
 
 [connection signal="area_exited" from="hand" to="." method="_on_hand_area_exited"]
 
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+
+[connection signal="timeout" from="speech_timer" to="." method="_on_speech_timer_timeout"]
 
 

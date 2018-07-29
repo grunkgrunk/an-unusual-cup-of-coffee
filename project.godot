@@ -12,6 +12,7 @@ config_version=3
 
 config/name="coffeejam"
 run/main_scene="res://game.tscn"
+run/low_processor_mode=true
 config/icon="res://icon.png"
 
 [debug]
@@ -39,7 +40,6 @@ touch=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"",
 
 [rendering]
 
-quality/2d/use_pixel_snap=true
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0.513726, 0.462745, 0.611765, 1 )
 environment/default_environment="res://default_env.tres"

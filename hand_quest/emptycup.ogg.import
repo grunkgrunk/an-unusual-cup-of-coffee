@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/emptycup.ogg-3d6a5f8b1823a50e6f80705daef0cd5d.oggstr"
+
+[deps]
+
+source_file="res://hand_quest/emptycup.ogg"
+dest_files=[ "res://.import/emptycup.ogg-3d6a5f8b1823a50e6f80705daef0cd5d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

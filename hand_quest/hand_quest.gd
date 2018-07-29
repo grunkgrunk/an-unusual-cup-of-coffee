@@ -43,6 +43,8 @@ func _ready():
         start_pos, target_pos, 1,
         Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT, 7)
 	show_speech(8)
+	$speech_timer.wait_time = 8
+	$speech_timer.start()
 	
 	$tween.start()
 	
@@ -58,10 +60,11 @@ func validate(coffee):
 	match coffee.contents:
 		{ "coffee_beans": true, "milk": true }:
 			if coffee.heat_state == "high":
-				return win
 				emit_signal("game_over")
+				return win
 			return cold_coffee_milk
 		{ "coffee_beans": false, "milk": false }:
+			#$empty_cup.play()
 			return empty
 		{ "coffee_beans": false, "milk": true}:
 			return only_milk
@@ -118,3 +121,8 @@ func hide_speech():
 func _on_timer_timeout():
 	if holding != null:
 		hide_speech()
+
+
+func _on_speech_timer_timeout():
+	pass
+	#$welcome.play()
