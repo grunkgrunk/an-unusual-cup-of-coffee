@@ -13,7 +13,7 @@ radius = 23.6859
 custom_solver_bias = 0.0
 extents = Vector2( 70.6887, 68.8271 )
 
-[node name="door_front" type="Area2D" groups=[
+[node name="door_front" type="Area2D" index="0" groups=[
 "door",
 "grab",
 "interactable",
