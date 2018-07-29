@@ -291,6 +291,36 @@ underline = 1
 script = ExtResource( 4 )
 _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
+[node name="source_button2" type="LinkButton" parent="source_button" index="0"]
+
+show_behind_parent = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 176.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.113725, 0.168627, 0.32549, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+group = null
+text = "source code"
+underline = 1
+script = ExtResource( 4 )
+_sections_unfolded = [ "Margin", "Rect", "Visibility", "custom_colors", "custom_fonts" ]
+
 [connection signal="pressed" from="source_button" to="source_button" method="_on_source_button_pressed"]
+
+[connection signal="pressed" from="source_button/source_button2" to="source_button/source_button2" method="_on_source_button_pressed"]
 
 
