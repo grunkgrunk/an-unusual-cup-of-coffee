@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://coffee_sprites-export.png" type="Texture" id=2]
+[ext_resource path="res://player/hit_wood/hit4.ogg" type="AudioStream" id=3]
+[ext_resource path="res://player/hit_wood/hit2.ogg" type="AudioStream" id=4]
+[ext_resource path="res://player/hit_wood/hit3.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -18,7 +21,7 @@ radius = 30.2637
 custom_solver_bias = 0.0
 extents = Vector2( 30.2309, 43.2906 )
 
-[node name="hand" type="KinematicBody2D" groups=[
+[node name="hand" type="KinematicBody2D" index="0" groups=[
 "player",
 "hand",
 ]]
@@ -82,5 +85,38 @@ shape = SubResource( 3 )
 [node name="bottom" type="Position2D" parent="." index="4"]
 
 position = Vector2( 4.82726, 46.416 )
+
+[node name="hit_wood_0" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="hit_wood_1" type="AudioStreamPlayer2D" parent="." index="6"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="hit_wood_2" type="AudioStreamPlayer2D" parent="." index="7"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 

@@ -19,7 +19,7 @@ func _ready():
 	tween.interpolate_property($by, "modulate",vis, invis, 1,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 6)
 	tween.interpolate_property($controls, "modulate",vis, invis, 1,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 6)
 	tween.start()
-	
-func game_over():
-	tween.interpolate_property($game_over, "modulate",invis, vis, 1,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 2)
-	tween.start()
+
+func _on_hand_quest_game_over():
+	$tween.interpolate_property($game_over, "modulate",invis, vis, 1,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, 2)
+	$tween.start()

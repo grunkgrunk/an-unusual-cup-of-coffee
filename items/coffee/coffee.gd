@@ -4,7 +4,6 @@ var coffee_state = "empty"
 var heat_state = "normal"
 var missing_beans = 3
 
-
 const coffee_state_to_frame = {
 	"coffee_milk": 27,
 	"milk": 28,
@@ -24,20 +23,17 @@ var contents = {
 }
 
 func _ready():
-	set_coffee_state("empty")
-	set_heat_state("normal")
+	set_coffee_state(coffee_state)
+	set_heat_state(heat_state)
 
 func add_content(content):
 	contents[content] = true
-	match contents:
-		{ "coffee_beans": true, "milk": true }:
-			#set_coffee_state("coffee_milk")
-			pass
-		{ "coffee_beans": false, "milk": false }:
-			set_coffee_state("empty")
-		{ "coffee_beans": false, "milk": true}:
-			set_coffee_state("milk")
-
+	
+	if not contents["milk"] and not contents["coffee_beans"]:
+		set_coffee_state("empty")
+	if contents["milk"]:
+		set_coffee_state("milk")
+		
 func add_bean():
 	if missing_beans > 0:
 		add_content("coffee_beans")
@@ -49,7 +45,6 @@ func add_bean():
 			1:
 				$beans/b1.show()
 		missing_beans -= 1
-
 
 func set_coffee_state(state):
 	coffee_state = state

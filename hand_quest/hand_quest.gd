@@ -1,10 +1,12 @@
 extends Node2D
 
+signal game_over
+
+
 var holding = null
 signal begin_grab
 signal end_grab
-# validate the coffee here
-# also have different messages here
+
 const welcome = "hi, i would like a cup of burning hot milk with three added coffee beans. I would like the milk to come straight from the cow please."
 const win = "perfect! exactly what i asked for. have a nice day!"
 const empty = "ehhhhhh... are you seriously serving me an empty cup sir?? i asked for 3 coffee beans and hot milk in this cup!"
@@ -16,6 +18,9 @@ const cold_coffee_milk = "nice.. it has all the ingredients i asked for. but it'
 onready var label = $speech/label
 onready var speech = $speech
 
+var invis = Color(1, 1, 1, 0)
+var vis = Color(1, 1, 1, 1)
+
 export(NodePath) var camera_path
 onready var camera = get_node(camera_path)
 var start_pos = null
@@ -24,15 +29,22 @@ var target_pos = null
 func _process(delta):
 	if camera:
 		speech.global_position.x = camera.position.x - 384
+		
+	if holding != null:
+		pass
+		#holding.position = $hand/hold.global_position
 
 func _ready():
+	speech.modulate = invis
 	target_pos = position
 	start_pos = $start_pos.global_position
 	position = start_pos
 	
 	$tween.interpolate_property(self, "position",
-        start_pos, target_pos, 2,
-        Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+        start_pos, target_pos, 1,
+        Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT, 7)
+	show_speech(8)
+	
 	$tween.start()
 	
 	label.text = welcome
@@ -48,6 +60,7 @@ func validate(coffee):
 		{ "coffee_beans": true, "milk": true }:
 			if coffee.heat_state == "high":
 				return win
+				emit_signal("game_over")
 			return cold_coffee_milk
 		{ "coffee_beans": false, "milk": false }:
 			return empty
@@ -67,18 +80,42 @@ func _on_hand_area_entered(area):
 		holding = area
 		holding.position = $hand/hold.global_position
 		label.set_text(validate(holding))
-		speech.show()
-		
-		var rand_dir = Vector2(1, 0).rotated(rand_range(0, 2*PI))*10
+		show_speech()
+		$timer.start()
+		#speech.show()
 		
 		#$tween.interpolate_property(self, "position",
-	    #    position, position + rand_dir,
+	    #    target_pos, start_pos, 1,
 	    #    Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
-		#$tween.start()
+			
+		#$tween.interpolate_property(self, "position",
+	    #    start_pos, target_pos, 1,
+	    #    Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT, 2)
+			
+		#tween.start()
 		
+	
 
 func _on_hand_area_exited(area):
 	if area == holding:
 		emit_signal("end_grab", self, area)
 		holding = null
-		speech.hide()
+		
+		hide_speech()
+
+func show_speech(delay=0):
+	if speech.modulate == vis:
+		return
+	$tween.interpolate_property(speech, "modulate",invis, vis, 0.5,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT, delay)
+	$tween.start()
+
+
+func hide_speech():
+	if speech.modulate == invis:
+		return
+	$tween.interpolate_property(speech, "modulate", vis,invis, 0.5,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	$tween.start()
+
+func _on_timer_timeout():
+	if holding != null:
+		hide_speech()

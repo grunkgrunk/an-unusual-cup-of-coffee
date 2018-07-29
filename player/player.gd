@@ -120,10 +120,13 @@ func switch_state(state):
 		HOVERING:
 			vel = Vector2()
 		TOUCHING:
+			var ra = str(randi() % 3)
+			get_node("hit_wood_"+ra).play()
 			var touching = get_overlap($surface)
 			emit_signal("begin_touch", self, touching)
 			vel = Vector2()
 		GRABBING:
+
 			holding = get_overlap($grab)
 			if holding != null:
 				holding.z_index = 99

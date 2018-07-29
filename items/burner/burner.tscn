@@ -4,42 +4,42 @@
 [ext_resource path="res://items/burner/fire.tscn" type="PackedScene" id=2]
 [ext_resource path="res://items/wire/wire.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 19.0535
 height = 27.9426
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 25.8354, 10 )
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=3]
 
 offsets = PoolRealArray( 0, 0.0490196, 0.367647, 0.647059, 0.852941, 0.946078 )
 colors = PoolColorArray( 0.160784, 0.678431, 1, 1, 1, 1, 1, 1, 1, 0.92549, 0.152941, 1, 1, 0.639216, 0, 1, 1, 0, 0.301961, 1, 0.113725, 0.168627, 0.32549, 1 )
 
-[sub_resource type="GradientTexture" id=2]
+[sub_resource type="GradientTexture" id=4]
 
 flags = 4
-gradient = SubResource( 1 )
+gradient = SubResource( 3 )
 width = 2048
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=5]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.992756, 0.274414 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
+[sub_resource type="CurveTexture" id=6]
 
 flags = 4
 width = 2048
-curve = SubResource( 3 )
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=7]
 
 resource_local_to_scene = true
 render_priority = 0
@@ -70,8 +70,8 @@ angle = 0.0
 angle_random = 1.0
 scale = 8.0
 scale_random = 0.0
-scale_curve = SubResource( 4 )
-color_ramp = SubResource( 2 )
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 4 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -88,21 +88,25 @@ position = Vector2( 1.41614, -4.2485 )
 [node name="CollisionShape2D" parent="." index="0"]
 
 position = Vector2( -4.64021, 7.13882 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="offset" parent="." index="1"]
 
 position = Vector2( -2.85553, 10.7082 )
 
+[node name="bottom" parent="." index="2"]
+
+editor/display_folded = true
+
 [node name="CollisionShape2D" parent="bottom" index="0"]
 
 position = Vector2( -3.56941, 38.1926 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="fire" parent="." index="3" instance=ExtResource( 2 )]
 
 position = Vector2( -3.36298, -22.4214 )
-process_material = SubResource( 5 )
+process_material = SubResource( 7 )
 
 [node name="sprite" parent="." index="4"]
 

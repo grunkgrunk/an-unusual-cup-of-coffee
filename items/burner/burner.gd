@@ -17,4 +17,5 @@ func _on_timer_timeout():
 	
 func _on_wire_connected():
 	emitting = true
+	get_parent().remove_from_group("grab")
 	
