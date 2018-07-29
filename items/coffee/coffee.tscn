@@ -14,7 +14,7 @@ radius = 24.785
 custom_solver_bias = 0.0
 extents = Vector2( 20.3287, 10 )
 
-[node name="coffee" index="0" groups=[
+[node name="coffee" groups=[
 "heatable",
 "coffee",
 ] instance=ExtResource( 1 )]
@@ -63,6 +63,7 @@ _sections_unfolded = [ "Animation", "Z Index" ]
 
 [node name="beans" type="Node2D" parent="." index="7"]
 
+editor/display_folded = true
 scale = Vector2( 0.4, 0.4 )
 _sections_unfolded = [ "Transform" ]
 

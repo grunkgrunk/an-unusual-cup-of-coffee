@@ -5,15 +5,16 @@ signal begin_grab
 signal end_grab
 # validate the coffee here
 # also have different messages here
-const welcome = "hi, i would like a cup of steaming hot milk with three added coffee beans. I would like the milk to come straight from the cow please."
+const welcome = "hi, i would like a cup of burning hot milk with three added coffee beans. I would like the milk to come straight from the cow please."
 const win = "perfect! exactly what i asked for. have a nice day!"
 const empty = "ehhhhhh... are you seriously serving me an empty cup sir?? i asked for 3 coffee beans and hot milk in this cup!"
 const only_milk = "this cup only has milk in it.. i also asked for coffee beans!"
 const missing_beans = "i ordered 3 coffee beans and there are only %s in this cup..."
 const missing_milk = "so by handing me this you think you are done or? i don't see the milk that i asked for.. go on... i'll wait."
+const cold_coffee_milk = "nice.. it has all the ingredients i asked for. but it's cold af. i want it burning hot please."
 
-onready var label = $layer/speech/label
-onready var speech = $layer/speech
+onready var label = $speech/label
+onready var speech = $speech
 
 func _ready():
 	label.text = welcome
@@ -27,7 +28,9 @@ func validate(coffee):
 			
 	match coffee.contents:
 		{ "coffee_beans": true, "milk": true }:
-			return win
+			if coffee.heat_state == "high":
+				return win
+			return cold_coffee_milk
 		{ "coffee_beans": false, "milk": false }:
 			return empty
 		{ "coffee_beans": false, "milk": true}:

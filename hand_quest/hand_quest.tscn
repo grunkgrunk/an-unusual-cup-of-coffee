@@ -22,7 +22,7 @@ use_filter = false
 font_data = SubResource( 2 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="hand_quest" type="Node2D" groups=[
+[node name="hand_quest" type="Node2D" index="0" groups=[
 "hand",
 ]]
 
@@ -56,20 +56,12 @@ shape = SubResource( 1 )
 
 position = Vector2( 341.624, -69.2728 )
 
-[node name="layer" type="CanvasLayer" parent="." index="2"]
+[node name="speech" type="Sprite" parent="." index="2"]
 
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="speech" type="Sprite" parent="layer" index="0"]
-
-position = Vector2( 145.993, 190.506 )
+position = Vector2( -237.665, -284.905 )
 texture = ExtResource( 3 )
 
-[node name="label" type="RichTextLabel" parent="layer/speech" index="0"]
+[node name="label" type="RichTextLabel" parent="speech" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
