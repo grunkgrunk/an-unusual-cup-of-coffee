@@ -16,4 +16,4 @@ func _ready():
 
 
 func _on_source_button_pressed():
-	OS.shell_open("http://godotengine.org")
+	OS.shell_open("https://github.com/grunkgrunk/an-unusual-cup-of-coffee")
