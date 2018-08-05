@@ -134,7 +134,6 @@ _sections_unfolded = [ "Process Material", "Time", "Transform" ]
 [node name="tits" type="Area2D" parent="." index="2" groups=[
 "item",
 "grab",
-"flesh",
 "tits_mount",
 ]]
 

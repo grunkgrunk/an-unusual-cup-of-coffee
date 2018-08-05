@@ -20,7 +20,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 1056.99, 66.7565 )
 
-[node name="game" type="Node2D"]
+[node name="game" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material" ]
@@ -127,7 +127,7 @@ position = Vector2( 1235.56, -181.783 )
 
 [node name="cow tit" parent="items" index="2" instance=ExtResource( 7 )]
 
-position = Vector2( 1645.99, 1710.58 )
+position = Vector2( 1256.54, 1064.59 )
 
 [node name="cow" parent="items" index="3" instance=ExtResource( 8 )]
 
